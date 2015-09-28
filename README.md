@@ -12,6 +12,11 @@ Wrapper for Path of Exile Web API written in Go
 
 More information about these calls can be found on the [Path of Exile API Website](https://www.pathofexile.com/developer/docs/api) and in the [godoc](http://godoc.org/github.com/JoshuaThompson/poego).
 
+###Installation
+```
+go get github.com/joshuathompson/poego
+```
+
 ###Usage 
 ```go
 package main
