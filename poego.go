@@ -1,7 +1,6 @@
 /*
 Package poego provides a wrapper of the Path of Exile API in Go
 */
-
 package poego
 
 import (
