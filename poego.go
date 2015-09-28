@@ -15,12 +15,28 @@ type Poego struct {
 	client *http.Client
 }
 
+//This is the error response structure from the Path of Exile API
+//Potential values are defined as follows:
+//Code	Message
+//1		Resource not found
+//2		Invalid query
+//3		Rate limit exceeded
+//4		Internal error
+//5		Unexpected content type
+//6		Forbidden
+type ApiError struct {
+	Error struct {
+		Code    int8   `json:"code"`
+		Message string `json:"message"`
+	} `json:"error"`
+}
+
 const (
 	BaseUrl = "api.pathofexile.com"
 	Scheme  = "http"
 )
 
-//Initialize the API with a http.client and base values
+//Initialize the API by creating a http.client
 func NewApi() *Poego {
 	return &Poego{
 		client: &http.Client{},

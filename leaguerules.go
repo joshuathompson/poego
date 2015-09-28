@@ -1,5 +1,11 @@
 package poego
 
+type Rule struct {
+	Id          int16  `json:"id"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
 //GetLeagueRules a list of all the possible rules for a league.
 func (p *Poego) GetLeagueRules() (rules []Rule, err error) {
 

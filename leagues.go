@@ -2,7 +2,20 @@ package poego
 
 import (
 	"net/url"
+	"time"
 )
+
+type League struct {
+	Id          string     `json:"id"`
+	Description string     `json:"description,omitempty"`
+	RegisterAt  *time.Time `json:"registerAt,omitempty"`
+	Event       bool       `json:"event,omitempty"`
+	Url         string     `json:"url"`
+	StartAt     *time.Time `json:"startAt"`
+	EndAt       *time.Time `json:"endAt"`
+	Rules       []Rule     `json:"rules,omitempty"`
+	Ladder      Ladder     `json:"ladder,omitempty"`
+}
 
 //GetLeagues returns a list of current leagues.
 //Optional value "type" can be set to all, event, or seasonal in orer to filter results to the specified type.
