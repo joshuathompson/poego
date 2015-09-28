@@ -37,7 +37,7 @@ const (
 )
 
 //Initialize the API by creating a http.client
-func NewApi() *Poego {
+func NewPoeApi() *Poego {
 	return &Poego{
 		client: &http.Client{},
 	}

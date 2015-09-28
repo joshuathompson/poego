@@ -29,7 +29,7 @@ import (
 
 func main() {
 
-	p := poego.NewApi()
+	p := poego.NewPoeApi()
 
 	//optional arguemnts can be passed via url.Values or map[string][]string
 	leagues, err := p.GetLeagues()
