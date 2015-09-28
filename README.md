@@ -10,7 +10,7 @@ Wrapper for Path of Exile Web API written in Go
 6. GetPvpMatches
 
 
-More information about these calls can be found on the [Path of Exile API Website](https://www.pathofexile.com/developer/docs/api)
+More information about these calls can be found on the [Path of Exile API Website](https://www.pathofexile.com/developer/docs/api) and in the [godoc](http://godoc.org/github.com/JoshuaThompson/poego).
 
 ###Usage 
 ```go

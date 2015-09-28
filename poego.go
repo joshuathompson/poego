@@ -17,6 +17,7 @@ const (
 	Scheme  = "http"
 )
 
+///Initialize the API with a http.client and base values
 func NewApi() *Poego {
 	return &Poego{
 		client: &http.Client{},
