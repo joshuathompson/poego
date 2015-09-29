@@ -5,13 +5,13 @@ import (
 )
 
 type Ladder struct {
-	Total   int16     `json:"total"`
+	Total   int       `json:"total"`
 	Entries []Entries `json:"entries"`
 }
 
 type Entries struct {
 	Online    bool       `json:"online"`
-	Rank      int16      `json:"rank"`
+	Rank      int        `json:"rank"`
 	Dead      bool       `json:"dead"`
 	Character *Character `json:"character"`
 	Account   *Account   `json:"account"`
@@ -19,7 +19,7 @@ type Entries struct {
 
 type Character struct {
 	Name       string `json:"name"`
-	Level      int8   `json:"level"`
+	Level      int    `json:"level"`
 	Class      string `json:"class"`
 	Experience int    `json:"experience"`
 }
@@ -31,7 +31,7 @@ type Account struct {
 }
 
 type AccountChallenges struct {
-	Total int16 `json:"total"`
+	Total int `json:"total"`
 }
 
 type AccountTwitch struct {
