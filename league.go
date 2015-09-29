@@ -13,8 +13,8 @@ type League struct {
 	Url         string     `json:"url"`
 	StartAt     *time.Time `json:"startAt"`
 	EndAt       *time.Time `json:"endAt"`
-	Rules       []Rule     `json:"rules,omitempty"`
-	Ladder      Ladder     `json:"ladder,omitempty"`
+	Rules       []Rules    `json:"rules,omitempty"`
+	Ladder      *Ladder    `json:"ladder,omitempty"`
 }
 
 //GetLeagues returns a list of current leagues.

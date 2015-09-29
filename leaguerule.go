@@ -1,13 +1,19 @@
 package poego
 
-type Rule struct {
+type Rules struct {
 	Id          int16  `json:"id"`
 	Name        string `json:"name"`
 	Description string `json:"description"`
 }
 
+type Rule struct {
+	Id          string `json:"id"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
 //GetLeagueRules a list of all the possible rules for a league.
-func (p *Poego) GetLeagueRules() (rules []Rule, err error) {
+func (p *Poego) GetLeagueRules() (rules []Rules, err error) {
 
 	r := p.buildRequest("GET", "/league-rules", nil)
 	err = p.makeRequest(r, &rules)
