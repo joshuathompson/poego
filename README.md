@@ -17,6 +17,11 @@ More information about these calls can be found on the [Path of Exile API Websit
 go get github.com/joshuathompson/poego
 ```
 
+###Tests
+```
+go test
+```
+
 ###Usage 
 ```go
 package main
@@ -32,6 +37,7 @@ func main() {
 	p := poego.NewPoeApi()
 
 	//optional arguemnts can be passed via url.Values or map[string][]string
+	//this is clearly demonstrated in a few of the tests
 	leagues, err := p.GetLeagues()
 
 	if err != nil {
