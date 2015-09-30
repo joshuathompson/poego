@@ -6,15 +6,15 @@ import (
 )
 
 type League struct {
-	Id          string     `json:"id"`
-	Description string     `json:"description,omitempty"`
-	RegisterAt  *time.Time `json:"registerAt,omitempty"`
-	Event       bool       `json:"event,omitempty"`
-	Url         string     `json:"url"`
-	StartAt     *time.Time `json:"startAt"`
-	EndAt       *time.Time `json:"endAt"`
-	Rules       []Rules    `json:"rules,omitempty"`
-	Ladder      *Ladder    `json:"ladder,omitempty"`
+	Id          string     `gorethink:"id" json:"id"`
+	Description string     `gorethink:"description,omitempty" json:"description,omitempty"`
+	RegisterAt  *time.Time `gorethink:"registerAt,omitempty" json:"registerAt,omitempty"`
+	Event       bool       `gorethink:"event,omitempty" json:"event,omitempty"`
+	Url         string     `gorethink:"url" json:"url"`
+	StartAt     *time.Time `gorethink:"startAt" json:"startAt"`
+	EndAt       *time.Time `gorethink:"endAt" json:"endAt"`
+	Rules       []Rules    `gorethink:"rules,omitempty" json:"rules,omitempty"`
+	Ladder      *Ladder    `gorethink:"ladder,omitempty" json:"ladder,omitempty"`
 }
 
 //GetLeagues returns a list of current leagues.

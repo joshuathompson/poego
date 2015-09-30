@@ -5,37 +5,37 @@ import (
 )
 
 type Ladder struct {
-	Total   int       `json:"total"`
-	Entries []Entries `json:"entries"`
+	Total   int       `gorethink:"total" json:"total"`
+	Entries []Entries `gorethink:"entries" json:"entries"`
 }
 
 type Entries struct {
-	Online    bool       `json:"online"`
-	Rank      int        `json:"rank"`
-	Dead      bool       `json:"dead"`
-	Character *Character `json:"character"`
-	Account   *Account   `json:"account"`
+	Online    bool       `gorethink:"online" json:"online"`
+	Rank      int        `gorethink:"rank" json:"rank"`
+	Dead      bool       `gorethink:"dead" json:"dead"`
+	Character *Character `gorethink:"character" json:"character"`
+	Account   *Account   `gorethink:"account" json:"account"`
 }
 
 type Character struct {
-	Name       string `json:"name"`
-	Level      int    `json:"level"`
-	Class      string `json:"class"`
-	Experience int    `json:"experience"`
+	Name       string `gorethink:"name" json:"name"`
+	Level      int    `gorethink:"level" json:"level"`
+	Class      string `gorethink:"class" json:"class"`
+	Experience int    `gorethink:"experience" json:"experience"`
 }
 
 type Account struct {
-	Name       string             `json:"name"`
-	Challenges *AccountChallenges `json:"challenges,omitempty"`
-	Twitch     *AccountTwitch     `json:"twitch,omitempty"`
+	Name       string             `gorethink:"name" json:"name"`
+	Challenges *AccountChallenges `gorethink:"challenges,omitempty" json:"challenges,omitempty"`
+	Twitch     *AccountTwitch     `gorethink:"twitch,omitempty" json:"twitch,omitempty"`
 }
 
 type AccountChallenges struct {
-	Total int `json:"total"`
+	Total int `gorethink:"total" json:"total"`
 }
 
 type AccountTwitch struct {
-	Name string `json:"name"`
+	Name string `gorethink:"name" json:"name"`
 }
 
 //GetLadder returns a ladder for the supplied id.

@@ -1,15 +1,15 @@
 package poego
 
 type Rules struct {
-	Id          int    `json:"id"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+	Id          int    `gorethink:"id" json:"id"`
+	Name        string `gorethink:"name" json:"name"`
+	Description string `gorethink:"description" json:"description"`
 }
 
 type Rule struct {
-	Id          string `json:"id"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+	Id          string `gorethink:"id" json:"id"`
+	Name        string `gorethink:"name" json:"name"`
+	Description string `gorethink:"description" json:"description"`
 }
 
 //GetLeagueRules a list of all the possible rules for a league.

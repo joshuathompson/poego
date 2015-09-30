@@ -6,15 +6,15 @@ import (
 )
 
 type PvpMatch struct {
-	Id            string     `json:"id"`
-	StartAt       *time.Time `json:"startAt"`
-	EndAt         *time.Time `json:"endAt"`
-	Url           string     `json:"url"`
-	Description   string     `json:"description"`
-	GlickoRatings bool       `json:"glickoRatings"`
-	Pvp           bool       `json:"pvp"`
-	Style         string     `json:"style"`
-	RegisterAt    *time.Time `json:"registerAt"`
+	Id            string     `gorethink:"id" json:"id"`
+	StartAt       *time.Time `gorethink:"startAt" json:"startAt"`
+	EndAt         *time.Time `gorethink:"endAt" json:"endAt"`
+	Url           string     `gorethink:"url" json:"url"`
+	Description   string     `gorethink:"description" json:"description"`
+	GlickoRatings bool       `gorethink:"glickoRatings" json:"glickoRatings"`
+	Pvp           bool       `gorethink:"pvp" json:"pvp"`
+	Style         string     `gorethink:"style" json:"style"`
+	RegisterAt    *time.Time `gorethink:"registerAt" json:"registerAt"`
 }
 
 //GetPvpMatches returns a list of all upcoming PvP matches.
