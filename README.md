@@ -40,7 +40,7 @@ func main() {
 
 	//optional arguemnts can be passed via url.Values or map[string][]string
 	//this is clearly demonstrated in a few of the tests
-	leagues, err := p.GetLeagues()
+	leagues, err := p.GetLeagues(nil)
 
 	if err != nil {
 		log.Fatal(err)
