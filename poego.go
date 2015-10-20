@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"strconv"
 )
 
 type Poego struct {
@@ -32,8 +33,10 @@ type ApiError struct {
 }
 
 const (
-	BaseUrl = "api.pathofexile.com"
-	Scheme  = "http"
+	BaseUrl                    = "api.pathofexile.com"
+	Scheme                     = "http"
+	TotalPossibleLadderEntries = 15000
+	MaxLadderSegmentSize       = 200
 )
 
 //Initialize the API by creating a http.client
@@ -41,6 +44,23 @@ func NewPoeApi() *Poego {
 	return &Poego{
 		client: &http.Client{},
 	}
+}
+
+func (p *Poego) buildRequestsForEntireLadder(method, endpoint string) []*http.Request {
+
+	numUrls := TotalPossibleLadderEntries / MaxLadderSegmentSize
+	var requests []*http.Request
+
+	for i := 0; i < numUrls; i++ {
+
+		v := url.Values{}
+		v.Add("limit", "200")
+		v.Add("offset", strconv.Itoa(i*200))
+
+		requests = append(requests, p.buildRequest(method, endpoint, v))
+	}
+
+	return requests
 }
 
 func (p *Poego) buildRequest(method, endpoint string, v url.Values) *http.Request {

@@ -1,7 +1,10 @@
 package poego
 
 import (
+	"fmt"
+	"net/http"
 	"net/url"
+	"time"
 )
 
 type Ladder struct {
@@ -52,4 +55,39 @@ func (p *Poego) GetLadder(id string, v url.Values) (ladder Ladder, err error) {
 	}
 
 	return ladder, err
+}
+
+func (p *Poego) GetEntireLadder(id string) (l Ladder, e error) {
+
+	requests := p.buildRequestsForEntireLadder("GET", "/ladders/"+id)
+	ladders := make(chan Ladder, len(requests))
+	errs := make(chan error, len(requests))
+
+	throttle := time.Tick(time.Second)
+	for _, req := range requests {
+		<-throttle
+		go func(req *http.Request) {
+
+			var ladder Ladder
+			err := p.makeRequest(req, &ladder)
+
+			if err != nil {
+				errs <- err
+			}
+
+			ladders <- ladder
+		}(req)
+	}
+
+	for i := 0; i < len(requests); i++ {
+		select {
+		case ladder := <-ladders:
+			l.Total = ladder.Total
+			l.Entries = append(l.Entries, ladder.Entries...)
+		case err := <-errs:
+			return l, err
+		}
+	}
+
+	return l, e
 }
