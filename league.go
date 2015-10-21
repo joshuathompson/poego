@@ -52,7 +52,7 @@ func (p *Poego) GetLeague(id string, v url.Values) (league League, err error) {
 }
 
 //GetEntireLeagueLadder returns a league for the supplied id and includes all 15000 users in the ladder.
-//This will take roughly 15 seconds to run as explained in the GetEntireLadder function.
+//This will take roughly 25 seconds to run as explained in the GetEntireLadder function.
 func (p *Poego) GetEntireLeagueLadder(id string) (league League, err error) {
 
 	league, err = p.GetLeague(id, nil)

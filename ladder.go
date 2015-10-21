@@ -57,7 +57,7 @@ func (p *Poego) GetLadder(id string, v url.Values) (ladder Ladder, err error) {
 }
 
 //GetEntireLadder gets up to 15000 ladder entries (api limitation) for the supplied id by making 75 requests
-//at a rate of 5 requests per second.  This means that it will take roughly 15 seconds in total to execute.
+//at a rate of 5 requests per second.  This means that it will take roughly 25 seconds in total to execute.
 //Exercise caution due to rate limits.
 func (p *Poego) GetEntireLadder(id string) (l Ladder, e error) {
 
@@ -76,7 +76,7 @@ func (p *Poego) GetEntireLadder(id string) (l Ladder, e error) {
 	}
 
 	//3 requests per second
-	rate := time.Tick(time.Second / 5)
+	rate := time.Tick(time.Second / 3)
 	for _, req := range requests {
 		go func(req *http.Request) {
 
