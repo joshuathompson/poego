@@ -1,9 +1,9 @@
 package poego
 
 import (
-	"fmt"
 	"net/http"
 	"net/url"
+	"strconv"
 	"time"
 )
 
@@ -44,7 +44,6 @@ type AccountTwitch struct {
 //GetLadder returns a ladder for the supplied id.
 //Optional value "limit" which is an integer between 20 and 200 specifies how many entries to pull.
 //Optional value "offset" specifies how far from 0 to begin pulling entries.
-//The max amount of entries in a ladder is 15000 which means you need to make 75 requests to pull an entire set.
 func (p *Poego) GetLadder(id string, v url.Values) (ladder Ladder, err error) {
 
 	r := p.buildRequest("GET", "/ladders/"+id, v)
@@ -57,15 +56,28 @@ func (p *Poego) GetLadder(id string, v url.Values) (ladder Ladder, err error) {
 	return ladder, err
 }
 
+//GetEntireLadder gets up to 15000 ladder entries (api limitation) for the supplied id by making 75 requests
+//at a rate of 5 requests per second.  This means that it will take roughly 15 seconds in total to execute.
+//Exercise caution due to rate limits.
 func (p *Poego) GetEntireLadder(id string) (l Ladder, e error) {
 
-	requests := p.buildRequestsForEntireLadder("GET", "/ladders/"+id)
+	var requests []*http.Request
+	numUrls := TotalPossibleLadderEntries / MaxLadderSegmentSize
 	ladders := make(chan Ladder, len(requests))
 	errs := make(chan error, len(requests))
 
-	throttle := time.Tick(time.Second)
+	for i := 0; i < numUrls; i++ {
+
+		v := url.Values{}
+		v.Add("limit", "200")
+		v.Add("offset", strconv.Itoa(i*200))
+
+		requests = append(requests, p.buildRequest("GET", "/ladders/"+id, v))
+	}
+
+	//3 requests per second
+	rate := time.Tick(time.Second / 5)
 	for _, req := range requests {
-		<-throttle
 		go func(req *http.Request) {
 
 			var ladder Ladder
@@ -77,6 +89,7 @@ func (p *Poego) GetEntireLadder(id string) (l Ladder, e error) {
 
 			ladders <- ladder
 		}(req)
+		<-rate
 	}
 
 	for i := 0; i < len(requests); i++ {
@@ -85,7 +98,8 @@ func (p *Poego) GetEntireLadder(id string) (l Ladder, e error) {
 			l.Total = ladder.Total
 			l.Entries = append(l.Entries, ladder.Entries...)
 		case err := <-errs:
-			return l, err
+			e = err
+			return l, e
 		}
 	}
 
