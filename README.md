@@ -11,6 +11,12 @@ Wrapper for Path of Exile Web API written in Go
 5. GetLadder
 6. GetPvpMatches
 
+###Extra Calls
+1. GetEntireLadder
+2. GetEntireLeagueLadder
+
+These two calls make 75 (unfotunately, due to GGG's API implementation) requests over the course of 25~ seconds to the api in order to get the 15000 maximum ladder entries, with the league function returning the league information as well.  Be careful with how often you call either of these functions due to rate limiting.  
+
 
 More information about these calls can be found on the [Path of Exile API Website](https://www.pathofexile.com/developer/docs/api) and in the [godoc](http://godoc.org/github.com/JoshuaThompson/poego).
 
