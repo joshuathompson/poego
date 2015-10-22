@@ -11,7 +11,7 @@ Wrapper for Path of Exile Web API written in Go
 5. GetLadder
 6. GetPvpMatches
 
-###Extra Calls
+###Additional Functionality
 1. GetEntireLadder
 2. GetEntireLeagueLadder
 
