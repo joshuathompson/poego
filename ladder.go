@@ -46,7 +46,9 @@ type AccountTwitch struct {
 //Optional value "offset" specifies how far from 0 to begin pulling entries.
 func (p *Poego) GetLadder(id string, v url.Values) (ladder Ladder, err error) {
 
-	r := p.buildRequest("GET", "/ladders/"+id, v)
+	v.Add("id", id)
+
+	r := p.buildRequest("GET", "/ladders/", v)
 	err = p.makeRequest(r, &ladder)
 
 	if err != nil {
@@ -69,10 +71,11 @@ func (p *Poego) GetEntireLadder(id string) (l Ladder, e error) {
 	for i := 0; i < numUrls; i++ {
 
 		v := url.Values{}
+		v.Add("id", id)
 		v.Add("limit", "200")
 		v.Add("offset", strconv.Itoa(i*200))
 
-		requests = append(requests, p.buildRequest("GET", "/ladders/"+id, v))
+		requests = append(requests, p.buildRequest("GET", "/ladders/", v))
 	}
 
 	//3 requests per second
