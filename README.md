@@ -4,14 +4,17 @@ Wrapper for Path of Exile Web API written in Go
 [![Build Status](https://travis-ci.org/JoshuaThompson/poego.svg?branch=master)](https://travis-ci.org/JoshuaThompson/poego)
 
 ###Supported API Calls
-1. GetLeagues
-2. GetLeague
+1. GetLeagues*
+2. GetLeague*
 3. GetLeagueRules
 4. GetLeagueRule
 5. GetLadder
 6. GetPvpMatches
 
 More information about these calls can be found on the [Path of Exile API Website](https://www.pathofexile.com/developer/docs/api) and in the [godoc](http://godoc.org/github.com/JoshuaThompson/poego).
+
+*Note: The league API calls appear to be bugged in that the offset doesn't work properly and you can't get older leagues by id.  In order to get older information you
+will currently have to use a tool like phantonmjs or some other web crawler.  
 
 ###Additional Functionality
 1. GetEntireLadder
