@@ -20,7 +20,7 @@ will currently have to use a tool like phantonmjs or some other web crawler.
 1. GetEntireLadder
 2. GetEntireLeagueLadder
 
-These two calls make 75 (unfotunately, due to GGG's API implementation) requests over the course of 25~ seconds to the api in order to get the 15000 maximum ladder entries, with the league function returning the league information as well.  Be careful with how often you call either of these functions due to rate limiting.  
+These two calls make 75 (unfortunately, due to GGG's API implementation) requests over the course of 25~ seconds to the api in order to get the 15000 maximum ladder entries, with the league function returning the league information as well.  Be careful with how often you call either of these functions due to rate limiting.  
 
 ###Installation
 ```
