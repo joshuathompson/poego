@@ -1,8 +1,6 @@
 # Poego
 Wrapper for Path of Exile Web API written in Go
 
-[![Build Status](https://travis-ci.org/JoshuaThompson/poego.svg?branch=master)](https://travis-ci.org/JoshuaThompson/poego)
-
 ### Supported API Calls
 1. GetLeagues*
 2. GetLeague*
