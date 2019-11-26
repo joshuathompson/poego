@@ -1,7 +1,7 @@
 package poego
 
 type Rules struct {
-	Id          int    `gorethink:"id" json:"id"`
+	Id          string    `gorethink:"id" json:"id"`
 	Name        string `gorethink:"name" json:"name"`
 	Description string `gorethink:"description" json:"description"`
 }
